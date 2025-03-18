@@ -1,10 +1,3 @@
-//
-//  smartbasketApp.swift
-//  smartbasket
-//
-//  Created by Mobina Zargary on 2025-03-17.
-//
-
 import SwiftUI
 
 @main
@@ -13,7 +6,7 @@ struct smartbasketApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView() // 🔹 Set SplashScreenView as the initial screen
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
