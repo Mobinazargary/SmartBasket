@@ -30,46 +30,78 @@ struct AddItemView: View{
                     .edgesIgnoringSafeArea(.all)
                 }
                 
-                VStack(spacing: 50){
-                    TextField("Item Name", text: $name)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
+                
+                VStack(spacing: 40){
                     
-                    Picker("Select Category: \(category)", selection: $category){
-                        Text("Select Category").tag("Select Category")
+                    VStack(alignment: .leading){
+                        Text("Name:")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                            .italic()
                         
-                        ForEach(categories, id: \.self){
-                            category in Text(category).tag(category)
-                        }
+                        
+                        TextField("Item Name", text: $name)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                            .shadow(radius:5)
                     }
+                    
+                        Picker("Select Category: \(category)", selection: $category){
+                            Text("Select Category").tag("Select Category")
+                            
+                            ForEach(categories, id: \.self){
+                                category in Text(category).tag(category)
+                            }
+                    }
+                    
                     .pickerStyle(.menu)
+                
+                    VStack(alignment: .leading){
+                        Text("Price:")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                            .italic()
+                        
+                        TextField("Price", text: $price)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.decimalPad)
+                            .padding()
+                            .shadow(radius:5)
+                    }
                     
-                    TextField("Price", text: $price)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.decimalPad)
-                        .padding()
-                    
-                    TextField("Quantity", text: $quantity)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.numberPad)
-                        .padding()
-                    
+                    VStack(alignment: .leading){
+                        Text("Quantity:")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                            .italic()
+                        
+                        TextField("Quantity", text: $quantity)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.numberPad)
+                            .padding()
+                            .shadow(radius:5)
+                    }
                     
                     HStack {
                         Button(action: saveItem){
                             Text("Save")
                                 .padding()
+                                .frame(width: 180)
                                 .background(Color.green)
                                 .foregroundColor(.white)
-                                .cornerRadius(10)
+                                .cornerRadius(50)
+                                .italic()
+                                
                         }
                         
                         Button(action: cancelAction){
                             Text("Cancel")
                                 .padding()
+                                .frame(width: 120)
                                 .background(Color.red)
                                 .foregroundColor(.white)
-                                .cornerRadius(10)
+                                .cornerRadius(50)
+                                .italic()
                         }
                     }
                     
@@ -78,7 +110,6 @@ struct AddItemView: View{
                 }
                 .padding()
                 .navigationTitle("Add New Item:")
-                
             }
         }
     }
