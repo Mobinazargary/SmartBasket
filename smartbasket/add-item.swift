@@ -7,58 +7,81 @@ struct AddItemView: View{
     @State private var quantity: String = ""
     
     let categories = ["Food", "Cleaning", "Medication", "Fruits and Vegetables", "Beverages"]
+    init(){
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.darkGray]
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
     
     var body: some View {
-        VStack(spacing: 20){
-            TextField("Item Name", text: $name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+        
+        
+        ZStack{
+            Color(.systemGray6)
+                .ignoresSafeArea()
             
-            Picker("Select Category: \(category)", selection: $category){
-                Text("Select Category").tag("Select Category")
-                
-                ForEach(categories, id: \.self){
-                    category in Text(category).tag(category)
+            VStack(spacing:0){
+                VStack{
+                    LinearGradient(gradient: Gradient(colors: [Color.green.opacity(0.4), Color.white]),
+                                   startPoint: .top, endPoint: .center)
+                    .edgesIgnoringSafeArea(.all)
                 }
-            }
-                .pickerStyle(.menu)
-                .padding()
-            
-                TextField("Price", text: $price)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.decimalPad)
-                    .padding()
                 
-                TextField("Quantity", text: $quantity)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.numberPad)
-                    .padding()
-                
-                
-                HStack {
-                    Button(action: saveItem){
-                        Text("Save")
-                            .padding()
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                VStack(spacing: 50){
+                    TextField("Item Name", text: $name)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    
+                    Picker("Select Category: \(category)", selection: $category){
+                        Text("Select Category").tag("Select Category")
+                        
+                        ForEach(categories, id: \.self){
+                            category in Text(category).tag(category)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    
+                    TextField("Price", text: $price)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.decimalPad)
+                        .padding()
+                    
+                    TextField("Quantity", text: $quantity)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                        .padding()
+                    
+                    
+                    HStack {
+                        Button(action: saveItem){
+                            Text("Save")
+                                .padding()
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        
+                        Button(action: cancelAction){
+                            Text("Cancel")
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
                     }
                     
-                    Button(action: cancelAction){
-                        Text("Cancel")
-                            .padding()
-                            .background(Color.red)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
+                    .padding()
+                    Spacer()
                 }
-                
                 .padding()
-                Spacer()
+                .navigationTitle("Add New Item:")
+                
             }
-            .padding()
-            .navigationTitle("Add Item")
         }
+    }
         
         private func saveItem(){
             print("Item Saved: \(name), Category: \(category), Price: \(price), Quantity: \(quantity)")
