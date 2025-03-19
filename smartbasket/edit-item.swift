@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AddItemView: View{
+struct EditItemView: View{
     @State private var name: String = ""
     @State private var category: String = "Select Category"
     @State private var price: String = ""
@@ -31,7 +31,7 @@ struct AddItemView: View{
                 
                 
                 
-                VStack(spacing: 40){
+                VStack(spacing: 20){
                     
                     VStack(alignment: .leading){
                         Text("Name:")
@@ -56,18 +56,7 @@ struct AddItemView: View{
                     
                     .pickerStyle(.menu)
                 
-                    VStack(alignment: .leading){
-                        Text("Price:")
-                            .font(.headline)
-                            .foregroundColor(.secondary)
-                            .italic()
-                        
-                        TextField("Price", text: $price)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.decimalPad)
-                            .padding()
-                            .shadow(radius:5)
-                    }
+                    
                     
                     VStack(alignment: .leading){
                         Text("Quantity:")
@@ -82,12 +71,24 @@ struct AddItemView: View{
                             .shadow(radius:5)
                     }
                     
-                    HStack {
+                    VStack(alignment: .leading){
+                        Text("Price:")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                            .italic()
+                        
+                        TextField("Price", text: $price)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.decimalPad)
+                            .padding()
+                            .shadow(radius:5)
+                    }
+                    VStack(spacing: 30) {
                         Button(action: saveItem){
                             Text("Save")
                                 .padding()
                                 .font(.system(size:22, weight: .bold))
-                                .frame(width: 180)
+                                .frame(width: 200)
                                 .background(Color.green)
                                 .foregroundColor(.white)
                                 .cornerRadius(50)
@@ -96,10 +97,10 @@ struct AddItemView: View{
                         }
                         
                         Button(action: cancelAction){
-                            Text("Cancel")
+                            Text("Delete Item")
                                 .padding()
                                 .font(.system(size: 22, weight: .bold))
-                                .frame(width: 120)
+                                .frame(width: 200)
                                 .background(Color.red)
                                 .foregroundColor(.white)
                                 .cornerRadius(50)
@@ -111,7 +112,7 @@ struct AddItemView: View{
                     Spacer()
                 }
                 .padding()
-                .navigationTitle("+ Add New Item:")
+                .navigationTitle("Edit Item:")
             }
         }
     }
@@ -127,11 +128,13 @@ struct AddItemView: View{
         }
     }
     
-    struct AddItemView_Previews: PreviewProvider {
+    struct EditItemView_Previews: PreviewProvider {
         static var previews: some View {
             NavigationView {
-                AddItemView()
+                EditItemView()
             }
         }
     }
+
+
 
