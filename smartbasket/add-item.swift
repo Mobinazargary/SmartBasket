@@ -26,9 +26,28 @@ struct AddItemView: View{
                 .keyboardType(.numberPad)
                 .padding()
             
-        
+            
+            HStack {
+                Button(action: saveItem){
+                    Text("Save")
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(4)
+                }
+                
+                Button(action: cancelAction){
+                    Text("Cancel")
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(4)
+                }
+            }
+            
                 
         }
+        
     }
     
 }
