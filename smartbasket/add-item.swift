@@ -41,7 +41,7 @@ struct AddItemView: View{
                             .padding()
                             .background(Color.green)
                             .foregroundColor(.white)
-                            .cornerRadius(4)
+                            .cornerRadius(10)
                     }
                     
                     Button(action: cancelAction){
@@ -49,7 +49,7 @@ struct AddItemView: View{
                             .padding()
                             .background(Color.red)
                             .foregroundColor(.white)
-                            .cornerRadius(4)
+                            .cornerRadius(10)
                     }
                 }
                 
