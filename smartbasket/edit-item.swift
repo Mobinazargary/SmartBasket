@@ -7,6 +7,8 @@ struct EditItemView: View{
     @State private var quantity: String = ""
     
     let categories = ["Food", "Cleaning", "Medication", "Fruits and Vegetables", "Beverages"]
+    private let taxRate: Double = 0.05
+    
     init(){
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
@@ -46,16 +48,16 @@ struct EditItemView: View{
                             .shadow(radius:5)
                     }
                     
-                        Picker("Select Category: \(category)", selection: $category){
-                            Text("Select Category").tag("Select Category")
-                            
-                            ForEach(categories, id: \.self){
-                                category in Text(category).tag(category)
-                            }
+                    Picker("Select Category: \(category)", selection: $category){
+                        Text("Select Category").tag("Select Category")
+                        
+                        ForEach(categories, id: \.self){
+                            category in Text(category).tag(category)
+                        }
                     }
                     
                     .pickerStyle(.menu)
-                
+                    
                     
                     
                     VStack(alignment: .leading){
@@ -82,7 +84,29 @@ struct EditItemView: View{
                             .keyboardType(.decimalPad)
                             .padding()
                             .shadow(radius:5)
+                        
+                    
+                    if let priceValue = Double(price), priceValue > 0 {
+                        let totalWithoutTax = priceValue
+                        let taxAmount = totalWithoutTax * taxRate
+                        let totalWithTax = totalWithoutTax + taxAmount
+                        
+                        VStack(alignment: .leading, spacing: 10){
+                            Text("Tax: $\(String(format: " %.2f", taxAmount))")
+                                .font(.body)
+                                .foregroundColor(.black)
+                            
+                            Text("Total without Tax: $\(String(format: " %.2f", totalWithoutTax))")
+                                .font(.body)
+                            
+                            Text("Total with Tax: $\(String(format: "%.2f", totalWithTax))")
+                                .font(.body)
+                            
+                        }
+                        .padding()
                     }
+                }
+                    
                     VStack(spacing: 30) {
                         Button(action: saveItem){
                             Text("Save")
