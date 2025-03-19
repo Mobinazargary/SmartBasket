@@ -39,10 +39,6 @@ struct SplashScreenView: View {
                 Text("Built by Mobinasadat Zargary & Kevin Lapointe")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.gray)
-                
-                Text("Lapointe")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.gray)
                     .padding(.bottom, 40)
             }
             .onAppear {
