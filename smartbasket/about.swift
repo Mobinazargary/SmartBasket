@@ -8,7 +8,6 @@ struct AboutUsView: View{
             
                 ScrollView{
                     VStack(spacing:20){
-                        
                         VStack{
                             Text("About Us")
                                 .font(.largeTitle)

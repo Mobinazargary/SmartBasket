@@ -33,7 +33,7 @@ struct EditItemView: View{
                 
                 
                 
-                VStack(spacing: 20){
+                VStack(spacing: 25){
                     
                     VStack(alignment: .leading){
                         Text("Name:")
