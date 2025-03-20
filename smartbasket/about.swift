@@ -2,14 +2,21 @@ import SwiftUI
 
 struct AboutUsView: View{
     var body: some View {
-        
+        ZStack {
+            Color(.systemGray6)
+                .ignoresSafeArea()
+            
                 ScrollView{
                     VStack(spacing:20){
-                        Text("About Us")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .padding(.top,40)
                         
+                        VStack{
+                            Text("About Us")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .padding(.top,30)
+                        }
+                    }
+                       
                         Divider()
                         
                         Text("Welcome to Smart Basket - Your Ultimate Shopping Companion!")
@@ -82,7 +89,7 @@ struct AboutUsView: View{
                         Text("Meet Our Team:")
                             .font(.headline)
                             .fontWeight(.semibold)
-                         
+                        
                         Text("Mobinasadat Zargary")
                         Text("Kevin Lapointe")
                             .font(.body)
@@ -95,6 +102,7 @@ struct AboutUsView: View{
                 .navigationTitle("About Us")
             }
         }
+    
     
         struct AboutUsView_Previews: PreviewProvider{
             static var previews: some View {
