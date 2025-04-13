@@ -5,52 +5,45 @@ struct SplashScreenView: View {
     
     var body: some View {
         if isActive {
-            HomeView() // Replace with your actual home screen view
+            HomeView()
         } else {
-            VStack {
-                Spacer()
-                
-                // App Logo
-                Image("smartbasket_logo") // Add your logo to Assets.xcassets
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200) // Adjust size as needed
-                
-                // App Title
-                Text("SMART BASKET")
-                    .font(.system(size: 32, weight: .bold))
-                    .foregroundColor(Color(.darkGray))
-                    .padding(.top, 8)
-                
-                // Tagline
-                Text("DIGITAL SHOPPING LIST")
-                    .font(.system(size: 18))
-                    .foregroundColor(.gray)
-                
-                Spacer()
-                
-                // Slogan
-                Text("“Your Shopping Made Smarter”")
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(Color(.darkGray))
-                    .padding(.bottom, 4)
-                
-                // Developer Credits
-                Text("Built by Mobinasadat Zargary & Kevin Lapointe")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.gray)
-                    .padding(.bottom, 40)
-            }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    isActive = true // Navigate to HomeView after 2 seconds
+            // Light green background with an overlay
+            Color.green.opacity(0.03)
+                .edgesIgnoringSafeArea(.all)
+                .overlay(
+                    VStack(spacing: 8) {
+                        // App Logo
+                        Image("smartbasket_logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 500) d
+                        
+                        // Slogan
+                        Text("“Your Shopping Made Smarter”")
+                            .font(.system(size: 18, weight: .bold))
+                            // Example greenish-gray color + subtle shadow
+                            .foregroundColor(Color(red: 0.4, green: 0.45, blue: 0.4))
+                            .shadow(color: .black.opacity(0.15), radius: 1, x: 0, y: 1)
+                        
+                        // Developer Credits
+                        Text("Built by Mobinasadat Zargary & Kevin Lapointe")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(Color(red: 0.4, green: 0.45, blue: 0.4))
+                            .shadow(color: .black.opacity(0.15), radius: 1, x: 0, y: 1)
+                        
+                        Spacer() // Pushes everything up
+                    }
+                )
+                .onAppear {
+                    // Navigate to HomeView after 2 seconds
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        isActive = true
+                    }
                 }
-            }
         }
     }
 }
 
-// **Preview**
 struct SplashScreenView_Previews: PreviewProvider {
     static var previews: some View {
         SplashScreenView()
